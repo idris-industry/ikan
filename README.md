@@ -4,8 +4,14 @@ discuss about ipkg format is here,but we love a lean approach,so idris for every
 
 https://github.com/idris-lang/Idris-dev/issues/1825
 
-# ideas to draw from
+# Ideas to draw from
 
 scala 's `mill` and  `sbt` 
 
 clojure
+
+# General ideas
+
+an idris file but a specical file extension , .ipkg. It must contain a special entry `main : PkgIO ()` 
+
+# Contribution welcomed!
