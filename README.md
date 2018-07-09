@@ -1,6 +1,11 @@
-# ipkg
-package manager for idris,in idris
+# ipkg : package manager for idris,in idris
 
 discuss about ipkg format is here,but we love a lean approach,so idris for everything,not yaml,xml or some other file format
 
 https://github.com/idris-lang/Idris-dev/issues/1825
+
+# ideas to draw from
+
+scala 's `mill` and  `sbt` 
+
+clojure
