@@ -8,6 +8,11 @@ https://github.com/idris-lang/Idris-dev/issues/1825
 
 https://github.com/idris-lang/Idris-dev/wiki/Egg-%237:-The-Idris-Package-Manager
 
+# Dependency 
+install idris-free package with freer
+
+https://github.com/clayrat/idris-free (not merged yet)
+
 # Ideas to draw from
 
 scala 's `mill` and  `sbt` 
