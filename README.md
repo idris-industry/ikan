@@ -8,6 +8,13 @@ https://github.com/idris-lang/Idris-dev/issues/1825
 
 https://github.com/idris-lang/Idris-dev/wiki/Egg-%237:-The-Idris-Package-Manager
 
+# The big picture 
+
+The entry `main : PkgIO ()` is just the IO () for our package manager (We may just use plain old IO () instead).However,any operations would be constructed via freer monad DSLs,which separate specification and execution to a even higher level.
+
+Some examples of freer monadic DSL can be found at https://github.com/doofin/tensorflow-idris/blob/baea775a608c2e8e29cb0d30555499edb18c8a9e/UserApi.idr
+
+
 # Dependency 
 install idris-free package with freer
 
@@ -18,9 +25,5 @@ https://github.com/clayrat/idris-free (not merged yet)
 scala 's `mill` and  `sbt` 
 
 clojure
-
-# General ideas
-
-an idris file but a specical file extension , .ipkg. It must contain a special entry `main : PkgIO ()` 
 
 # Contribution welcomed!
