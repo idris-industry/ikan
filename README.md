@@ -1,3 +1,5 @@
+[![Join the chat at https://gitter.im/idris-gitter/Lobby](https://badges.gitter.im/idris-gitter/Lobby.svg)](https://gitter.im/idris-gitter/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 # ikan : package manager for idris,in idris
 
 This project aims provides a user api in idris at minimum and should reuse other efforts as much as possible(the code should be in idris)
