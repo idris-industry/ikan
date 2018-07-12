@@ -15,6 +15,20 @@ https://github.com/idris-lang/Idris-dev/wiki/Egg-%237:-The-Idris-Package-Manager
 
 kan extensions subsume all concepts in 1-dimensional category theory(by Mac Lane),and this project will use freer monads ,which is closely connected to kan extensions
 
+# Planned functionality
+
+build,install to local 
+
+version resolution
+
+list all pkgs
+
+generate template project
+
+zsh integration
+
+a website 
+
 # The big picture 
 
 The entry `main : PkgIO ()` is just the IO () for our package manager (We may just use plain old IO () instead).However,any operations would be constructed via freer monad DSLs,which separate specification and execution to a even higher level.
