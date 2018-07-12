@@ -54,4 +54,10 @@ scala 's `mill` and  `sbt` : https://github.com/lihaoyi/mill
 
 clojure : https://leiningen.org/
 
+# Existing idris pm
+
+https://github.com/dcao/elba
+
+https://github.com/idream-build/idream
+
 # Contribution welcomed!
