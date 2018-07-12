@@ -17,9 +17,11 @@ kan extensions subsume all concepts in 1-dimensional category theory(by Mac Lane
 
 # Planned functionality
 
-build,install to local 
+build,install to local ,clean
 
 version resolution
+
+multiple backend library management?
 
 list all pkgs
 
