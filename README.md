@@ -1,4 +1,4 @@
-# ipkg : package manager for idris,in idris
+# ikan : package manager for idris,in idris
 
 This project aims provides a user api in idris at minimum and should reuse other efforts as much as possible(the code should be in idris)
 
@@ -7,6 +7,10 @@ discuss about ipkg format is here,but we love a lean approach,so idris for every
 https://github.com/idris-lang/Idris-dev/issues/1825
 
 https://github.com/idris-lang/Idris-dev/wiki/Egg-%237:-The-Idris-Package-Manager
+
+# Why named ikan
+
+kan extensions almost subsume all concepts in 1-dimensional category theory,and this project will use freer monads ,which is closely connected to kan extensions
 
 # The big picture 
 
@@ -18,7 +22,7 @@ Some examples of freer monadic DSL can be found at https://github.com/doofin/ten
 # Dependency 
 install idris-free package with freer
 
-https://github.com/clayrat/idris-free (not merged yet)
+https://github.com/idris-industry/idris-free (not merged yet)
 
 # Ideas to draw from
 
