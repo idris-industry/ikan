@@ -33,14 +33,16 @@ a website
 
 # The big picture 
 
-The entry `main : PkgIO ()` is just the IO () for our package manager (We may just use plain old IO () instead).However,any operations would be constructed via freer monad DSLs,which separate specification and execution to a even higher level.
+The entry `main : PkgIO ()` is just the IO () for our package manager (We may just use plain old IO () instead).However,any operations would be implemented in deep embedding DSLs,which makes it convenient to do various kinds of interpretation.
+
+DSLs:https://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/embedding-short.pdf
 
 Some examples of freer monadic DSL can be found at https://github.com/doofin/tensorflow-idris/blob/baea775a608c2e8e29cb0d30555499edb18c8a9e/UserApi.idr
 
 
 repo hosting : just use github 
 
-.ipkg compatibility
+convert from/to .ipkg
 
 # Dependency 
 
