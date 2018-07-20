@@ -1,10 +1,16 @@
 module Main 
+import Package.IpkgAst
+import Package.IkanHelper 
+import System
 
 defaultDir : String
 defaultDir = "~/.idris-ikan"
 
 echo : String -> IO ()
 echo = putStrLn
+
+rawcmd : String -> IO ()
+rawcmd c = do system c ; pure ()
 
 ikanInit : IO ()
 ikanInit = do
@@ -15,26 +21,25 @@ ikanInit = do
 
 
 
-cmds : List (String,IO ())
-cmds = [("new",do
+cmds : List (String,String,IO ())
+cmds = [("new","create new project with template",do
   echo "project name ?"
   fn<-getLine
   r<-createDir fn
   case r of 
          (Left l)=>  echo "error !"
          (Right x)=>  do 
-           writeFile (fn++"/"++ fn++".ipkg") ("")
-           echo $ "ok,project created : "++ fn),
-         ("lst",do
+           writeFile (fn++"/"++ fn++".ipkg") (ipkgPackage "") 
+           writeFile (fn++"/"++ fn++".gitignore") (IkanHelper.gitign)
+           echo $ "ok,project created : "++ fn) ,
+         ("lst","init ikan pm",do
            r<-dirOpen defaultDir
            case r of 
                 (Left l)=> ikanInit
                 (Right r)=> echo "dir ok!"
-         )
+         ),
+         ("clean","clean this project,delete all .ibc file",rawcmd "idris clean ipkg")
          ]
-
-
-
 
 showHelp : IO ()
 showHelp = let acts=map (\(a,_)=>a) cmds in do
@@ -43,8 +48,20 @@ showHelp = let acts=map (\(a,_)=>a) cmds in do
 
 main : IO ()
 main = do
-  echo "welcome to ikan,a idris package manager"
+  echo "welcome to ikan,a idris package manager ! "
   args<-getArgs
+  d<-dirOpen "src/"
+  case d of 
+    Left l =>do print l; echo "failed dir 1"
+    (Right r)=> do
+      dd<-dirEntry r
+      case dd of
+        (Left l)=> do print l; echo "failed dir 2"
+        (Right r)=> do
+          echo "dd failed di2r"
+          echo r
+          pure ()
+      pure ()
   case args of
        []=> showHelp
        (_ :: Nil)=> showHelp
@@ -55,5 +72,5 @@ main = do
                 Nothing=> do 
                   echo "cmd not found"
                   showHelp
-                (Just (a, b))=> b
+                Just (_, _,b)=> b
   pure ()

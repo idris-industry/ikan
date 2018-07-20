@@ -1,3 +1,9 @@
+module IkanHelper 
+
+%access public export
+
+gitign : String
+gitign ="""
 *.ibc
 *.o
 
@@ -10,3 +16,4 @@
 auto-save-list
 tramp
 .\#*
+"""

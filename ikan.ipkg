@@ -3,3 +3,10 @@ package ikan
 modules = Main,
 	Package.IkanAst,
 	Package.IpkgAst
+
+sourcedir = src
+executable = ikan
+
+opts = "--warnreach --partial-eval"
+
+main = Main
