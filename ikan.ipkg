@@ -1,0 +1,5 @@
+package ikan
+
+modules = Main,
+	Package.IkanAst,
+	Package.IpkgAst

@@ -2,14 +2,18 @@
 
 # ikan : package manager for idris,in idris
 
-This project aims provides a user api in idris at minimum and should reuse other efforts as much as possible
+packages will be hosted here:https://github.com/orgs/idris-packages/ , if you want to help please email me
 
+This project aims provides a user api in idris at minimum and should reuse other efforts as much as possible
 
 General discuss about idris package manager is here
 
 https://github.com/idris-lang/Idris-dev/issues/1825
 
 https://github.com/idris-lang/Idris-dev/wiki/Egg-%237:-The-Idris-Package-Manager
+# Implemented
+
+create new project with .ipkg template
 
 # Why named ikan
 
@@ -33,14 +37,16 @@ a website
 
 # The big picture 
 
-The entry `main : PkgIO ()` is just the IO () for our package manager (We may just use plain old IO () instead).However,any operations would be implemented in deep embedding DSLs,which makes it convenient to do various kinds of interpretation.
+The entry `main : PkgIO ()` is just the IO () for our package manager (We may just use plain old IO () instead).However we do not do actions in IO directly,any operations would be implemented DSLs (deep embedding),which makes it convenient to do multiple kinds of interpretation,and allows a comprehensive way of viewing what happens at building.
 
 DSLs:https://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/embedding-short.pdf
+
+http://www.cs.ox.ac.uk/jeremy.gibbons/publications/embedding.pdf
 
 Some examples of freer monadic DSL can be found at https://github.com/doofin/tensorflow-idris/blob/baea775a608c2e8e29cb0d30555499edb18c8a9e/UserApi.idr
 
 
-repo hosting : just use github 
+repo hosting : just use git repos forked by idris-industry
 
 convert from/to .ipkg
 
