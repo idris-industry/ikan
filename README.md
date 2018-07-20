@@ -14,6 +14,15 @@ https://github.com/idris-lang/Idris-dev/wiki/Egg-%237:-The-Idris-Package-Manager
 # Implemented
 
 create new project with .ipkg template
+# Usage 
+
+clone and cd into this repo
+
+```
+	idris --build ikan.ipkg
+```
+
+move or symlink `ikan` to your path
 
 # Why named ikan
 
@@ -33,7 +42,7 @@ generate template project
 
 zsh integration
 
-a website 
+a website (currently everything will be put at https://github.com/idris-packages , contact me if you want to manage packages!)
 
 # The big picture 
 

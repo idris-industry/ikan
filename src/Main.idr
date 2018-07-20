@@ -29,9 +29,13 @@ cmds = [("new","create new project with template",do
   case r of 
          (Left l)=>  echo "error !"
          (Right x)=>  do 
-           writeFile (fn++"/"++ fn++".ipkg") (ipkgPackage "") 
-           writeFile (fn++"/"++ fn++".gitignore") (IkanHelper.gitign)
-           echo $ "ok,project created : "++ fn) ,
+           writeFile (fn++"/"++ fn++".ipkg") (ipkgPackage fn) 
+           writeFile (fn++"/.gitignore") (IkanHelper.gitign)
+           echo $ "ok,project created : "++ fn
+           echo "create main.idr? n for not "
+           x<-getLine
+           if (x=="n") then pure () else do writeFile (fn++"/Main.idr") "module Main\n";pure ()
+           ) ,
          ("lst","init ikan pm",do
            r<-dirOpen defaultDir
            case r of 
