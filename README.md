@@ -11,9 +11,10 @@ General discuss about idris package manager is here
 https://github.com/idris-lang/Idris-dev/issues/1825
 
 https://github.com/idris-lang/Idris-dev/wiki/Egg-%237:-The-Idris-Package-Manager
-# Implemented
+# Currently Implemented
 
 create new project with .ipkg template
+
 # Usage 
 
 clone and cd into this repo
@@ -30,13 +31,15 @@ kan extensions subsume all concepts in 1-dimensional category theory(by Mac Lane
 
 # Planned functionality
 
-build,install to local ,clean
+any thing is put at a central place , `~/.idris-ikan` ,which keeps your project directory clean
 
-version resolution
+sandboxed environment for every project
 
-multiple backend library management?
+multiple backends , js,jvm,etc,and library management
 
-list all pkgs
+multiple version resolution methods, via git commit specification or automatic
+
+build,install to local ,clean,list all pkgs
 
 generate template project
 
@@ -47,6 +50,8 @@ a website (currently everything will be put at https://github.com/idris-packages
 # The big picture 
 
 The entry `main : PkgIO ()` is just the IO () for our package manager (We may just use plain old IO () instead).However we do not do actions in IO directly,any operations would be implemented DSLs (deep embedding),which makes it convenient to do multiple kinds of interpretation,and allows a comprehensive way of viewing what happens at building.
+
+The reason for this kind of separation is that we can perform any analysis or inspection before actually perform it.Although the theories behind free monads are frightening,its usage is quite simple,and as users you will only see a simple monadic interface .
 
 DSLs:https://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/embedding-short.pdf
 

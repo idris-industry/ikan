@@ -50,22 +50,25 @@ showHelp = let acts=map (\(a,_)=>a) cmds in do
   echo $ "showing help : "
   putStrLn $ "avail commands : " ++ foldl1 (\x,y=>x++"\n"++y) acts
 
+listDirs : String->IO ()
+listDirs s = do
+  d<-dirOpen s
+  case d of 
+    Left l => echo "failed dirOpen "
+    (Right d1)=> do
+      echo $ "dirOpen "++s ++" ok !"
+      nextdir<-dirEntry d1
+      case nextdir of
+        (Left l)=> do print l; echo "dirEntry failed"
+        (Right r)=> do
+          echo $ "dir dirEntry " ++ s ++ " ok!"
+          listDirs r
+
 main : IO ()
 main = do
   echo "welcome to ikan,a idris package manager ! "
+  listDirs "src"
   args<-getArgs
-  d<-dirOpen "src/"
-  case d of 
-    Left l =>do print l; echo "failed dir 1"
-    (Right r)=> do
-      dd<-dirEntry r
-      case dd of
-        (Left l)=> do print l; echo "failed dir 2"
-        (Right r)=> do
-          echo "dd failed di2r"
-          echo r
-          pure ()
-      pure ()
   case args of
        []=> showHelp
        (_ :: Nil)=> showHelp

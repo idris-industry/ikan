@@ -1,0 +1,1 @@
+idrb ikan.ipkg && ./ikan
