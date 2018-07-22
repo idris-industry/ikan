@@ -23,11 +23,17 @@ clone and cd into this repo
 	idris --build ikan.ipkg
 ```
 
-move or symlink `ikan` to your path
+and then move or symlink generated bin `ikan` to your path
+
+# Sources
+
+Assets.idr : templates for new project ,etc
+
+Main.idr : main entry
 
 # Why named ikan
 
-kan extensions subsume all concepts in 1-dimensional category theory(by Mac Lane),and this project will use freer monads ,which is closely connected to kan extensions
+kan extensions subsume all concepts in 1-dimensional category theory(by Mac Lane),and this project will use freer monads ,which is closely connected to kan extensions. However,using ikan assume no knowledge of any category theory,you just have to be familiar with do notation and functional programming.
 
 # Planned functionality
 
