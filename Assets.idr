@@ -7,3 +7,13 @@ gitignore = """"""
 
 mainFile  : String
 mainFile = """"""
+
+pkgFile  : String->String
+pkgFile nm = """
+package $nm
+
+modules = Main
+
+main = Main
+
+"""
