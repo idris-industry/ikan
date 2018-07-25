@@ -1,6 +1,6 @@
 module Main 
 import Package.IpkgAst
-import Package.IkanHelper 
+import Package.IkanAssets
 import System
 
 defaultDir : String
@@ -30,11 +30,11 @@ cmds = [("new","create new project with template",do
          (Left l)=>  echo "error !"
          (Right x)=>  do 
            writeFile (fn++"/"++ fn++".ipkg") (ipkgPackage fn) 
-           writeFile (fn++"/.gitignore") (IkanHelper.gitign)
+           writeFile (fn++"/.gitignore") (IkanAssets.flGitignore)
            echo $ "ok,project created : "++ fn
            echo "create main.idr? n for not "
            x<-getLine
-           if (x=="n") then pure () else do writeFile (fn++"/Main.idr") "module Main\n";pure ()
+           if (x=="n") then pure () else do writeFile (fn++"/Main.idr") IkanAssets.flMain;pure ()
            ) ,
          ("lst","init ikan pm",do
            r<-dirOpen defaultDir
