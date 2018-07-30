@@ -21,6 +21,11 @@ clone and cd into this repo
 
 ```
 	idris --build ikan.ipkg
+	
+	or
+	
+	sh install.sh
+	
 ```
 
 and then move or symlink generated bin `ikan` to your path

@@ -39,18 +39,18 @@ cmds = [("np","create new template project ",do
            x<-getLine
            if (x=="n") then pure () else do writeFile (fn++"/Main.idr") IkanAssets.flMain;pure ()
            ) ,
-         ("lst","initialize ikan package manager(write files to "++ikanSettingsDir++")",do
+         ("iinit","initialize ikan package manager(write files to "++ikanSettingsDir++")",do
            r<-dirOpen ikanSettingsDir
            case r of 
                 (Left l)=> ikanInit
                 (Right r)=> echo "dir ok!"
          ),
-         ("clean","clean this project,delete all .ibc file",rawcmd "idris clean ipkg"),
-         ("nf","new file",
+         ("clr","clean this project,delete all .ibc file",rawcmd "idris clean ipkg"),
+         ("nf","new file/module",
          do
            echo0 "new file/module name:"
            s<-getLine
-           writeFile s ("module "++s)
+           writeFile s $ concat ["module ",s," \n"]
            pure ()
            )
          ]
@@ -78,7 +78,7 @@ listDirs s = do
 main : IO ()
 main = do
 --  let 
-  echo "welcome to ikan,a idris package manager ! "
+  echo "welcome to ikan , a idris package manager in idris ! "
 --  listDirs "src"
   args<-getArgs
   case args of
