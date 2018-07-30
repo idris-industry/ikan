@@ -50,7 +50,7 @@ cmds = [("np","create new template project ",do
          do
            echo0 "new file/module name:"
            s<-getLine
-           writeFile s $ concat ["module ",s," \n"]
+           writeFile (s++".idr") $ concat ["module ",s," \n"]
            pure ()
            )
          ]
