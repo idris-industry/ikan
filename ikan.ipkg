@@ -8,6 +8,6 @@ modules = Main,
 sourcedir = src
 executable = ikan
 
-opts = "--warnreach --partial-eval"
+opts = "-p contrib"
 
 main = Main

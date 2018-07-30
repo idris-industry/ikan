@@ -3,18 +3,21 @@ import Package.IpkgAst
 import Package.IkanAssets
 import System
 
-defaultDir : String
-defaultDir = "~/.idris-ikan"
+ikanSettingsDir : String
+ikanSettingsDir = "~/.idris-ikan"
 
 echo : String -> IO ()
 echo = putStrLn
+
+echo0 : String -> IO ()
+echo0 = putStr
 
 rawcmd : String -> IO ()
 rawcmd c = do system c ; pure ()
 
 ikanInit : IO ()
 ikanInit = do
-  r<-createDir defaultDir
+  r<-createDir ikanSettingsDir
   case r of 
          (Left l)=>  echo "error ikanInit"
          (Right x)=>  pure ()
@@ -22,7 +25,7 @@ ikanInit = do
 
 
 cmds : List (String,String,IO ())
-cmds = [("new","create new project with template",do
+cmds = [("np","create new template project ",do
   echo "project name ?"
   fn<-getLine
   r<-createDir fn
@@ -36,19 +39,27 @@ cmds = [("new","create new project with template",do
            x<-getLine
            if (x=="n") then pure () else do writeFile (fn++"/Main.idr") IkanAssets.flMain;pure ()
            ) ,
-         ("lst","init ikan pm",do
-           r<-dirOpen defaultDir
+         ("lst","initialize ikan package manager(write files to "++ikanSettingsDir++")",do
+           r<-dirOpen ikanSettingsDir
            case r of 
                 (Left l)=> ikanInit
                 (Right r)=> echo "dir ok!"
          ),
-         ("clean","clean this project,delete all .ibc file",rawcmd "idris clean ipkg")
+         ("clean","clean this project,delete all .ibc file",rawcmd "idris clean ipkg"),
+         ("nf","new file",
+         do
+           echo0 "new file/module name:"
+           s<-getLine
+           writeFile s ("module "++s)
+           pure ()
+           )
          ]
 
 showHelp : IO ()
-showHelp = let acts=map (\(a,_)=>a) cmds in do
+showHelp = do
+  let lns=map (\(c,desc,_) => concat [" ",c," : ",desc," \n"]) cmds
   echo $ "showing help : "
-  putStrLn $ "avail commands : " ++ foldl1 (\x,y=>x++"\n"++y) acts
+  putStrLn $ "avail commands : \n" ++ (foldl1 (\x,y=>x++y) lns)
 
 listDirs : String->IO ()
 listDirs s = do
@@ -66,18 +77,25 @@ listDirs s = do
 
 main : IO ()
 main = do
+--  let 
   echo "welcome to ikan,a idris package manager ! "
-  listDirs "src"
+--  listDirs "src"
   args<-getArgs
   case args of
-       []=> showHelp
-       (_ :: Nil)=> showHelp
-       (_ :: x :: xs)=> 
-         let act=find (\cmd=> let (nm,_)=cmd in nm==x) cmds 
-           in 
-              case act of
-                Nothing=> do 
-                  echo "cmd not found"
-                  showHelp
-                Just (_, _,b)=> b
+       (_ :: x :: xs) => doAct x
+       y => do 
+         showHelp
+         echo0 "input cmd:"          
+         ln<-getLine
+         doAct ln
+  
   pure ()
+where
+    doAct : String->IO ()
+    doAct = (\x => let act = find (\cmd=> let (nm,_,_)=cmd in nm==x) cmds 
+                    in (case act of
+                            Nothing=> do echo "cmd not found"
+                                         showHelp
+                            Just (_, _,io)=> io))
+
+
