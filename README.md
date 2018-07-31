@@ -2,9 +2,9 @@
 
 # ikan : package manager for idris,in idris
 
-packages will be hosted here:https://github.com/orgs/idris-packages/ , if you want to help please email me
+packages will be hosted here:https://github.com/orgs/idris-packages/ ,  please email me if you would like to help manage the packages.Basically,the packages this org forked would be available to ikan.
 
-This project aims provides a user api in idris at minimum and should reuse other efforts as much as possible
+The user api is mainly monadic, using free monads ,which easily allows multiple kind of analysis and interpretation.
 
 General discuss about idris package manager is here
 
@@ -15,16 +15,18 @@ https://github.com/idris-lang/Idris-dev/wiki/Egg-%237:-The-Idris-Package-Manager
 
 create new project with .ipkg template
 
+new file/module
+
 # Usage 
 
 clone and cd into this repo
 
 ```
-	idris --build ikan.ipkg
+idris --build ikan.ipkg
 	
-	or
+or
 	
-	sh install.sh
+sh install.sh
 	
 ```
 
@@ -32,9 +34,16 @@ and then move or symlink generated bin `ikan` to your path
 
 # Sources
 
-Assets.idr : templates for new project ,etc
+```
+├── src
+│   ├── Main.idr main entry
+│   └── Package
+│       ├── IkanAssets.idr  templates for new project ,etc
+│       ├── IkanAst.idr
+│       ├── IpkgAst.idr
+│       └── IpkgParser.idr
 
-Main.idr : main entry
+```
 
 # Why named ikan
 

@@ -45,7 +45,11 @@ cmds = [("np","create new template project ",do
                 (Left l)=> ikanInit
                 (Right r)=> echo "dir ok!"
          ),
-         ("clr","clean this project,delete all .ibc file",rawcmd "idris clean ipkg"),
+         ("clr","clean this project,delete all .ibc file",do
+         rawcmd "rm **/*.ibc"
+         echo "ok,project cleaned"
+         --rawcmd "idris clean ipkg"
+         ),
          ("nf","new file/module",
          do
            echo0 "new file/module name:"

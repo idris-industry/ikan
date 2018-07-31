@@ -3,7 +3,8 @@ package ikan
 modules = Main,
 	Package.IkanAst,
 	Package.IpkgAst,
-	Package.IkanAssets
+	Package.IkanAssets,
+	Package.IpkgParser
 
 sourcedir = src
 executable = ikan
