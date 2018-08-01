@@ -1,6 +1,7 @@
 module Package.IpkgParser
 import public Text.Lexer
 
+-- not used
 %default total
 
 public export

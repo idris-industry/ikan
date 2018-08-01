@@ -8,7 +8,7 @@ modules = Main,
 
 sourcedir = src
 executable = ikan
-
-opts = "-p contrib"
+pkgs = lightyear,contrib
+-- opts = "-p contrib"
 
 main = Main
