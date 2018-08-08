@@ -2,9 +2,9 @@
 
 # ikan : package manager for idris,in idris
 
-packages will be hosted here:https://github.com/orgs/idris-packages/ ,  please email me if you would like to help manage the packages.Basically,the packages this org forked would be available to ikan.
+packages will be hosted here: https://github.com/orgs/idris-packages/ , please email me if you would like to help manage the packages. Basically, the packages this org forked would be available to ikan.
 
-The user api is mainly monadic, using free monads ,which easily allows multiple kind of analysis and interpretation.
+The user api is mainly monadic, using free monads, which easily allows multiple kinds of analysis and interpretation.
 
 General discuss about idris package manager is here
 
@@ -45,9 +45,9 @@ and then move or symlink generated bin `ikan` to your path
 
 ```
 
-# Why named ikan
+# Why is it named ikan
 
-kan extensions subsume all concepts in 1-dimensional category theory(by Mac Lane),and this project will use freer monads ,which is closely connected to kan extensions. However,using ikan assume no knowledge of any category theory,you just have to be familiar with do notation and functional programming.
+kan extensions subsume all concepts in 1-dimensional category theory(by Mac Lane), and this project will use freer monads, which are closely connected to kan extensions. However, using ikan will assume no knowledge of any category theory, you just have to be familiar with do notation and functional programming.
 
 # Planned functionality
 
@@ -69,11 +69,11 @@ a website (currently everything will be put at https://github.com/idris-packages
 
 # The big picture 
 
-The entry `main : PkgIO ()` is just the IO () for our package manager (We may just use plain old IO () instead).However we do not do actions in IO directly,any operations would be implemented DSLs (deep embedding),which makes it convenient to do multiple kinds of interpretation,and allows a comprehensive way of viewing what happens at building.
+The entry `main : PkgIO ()` is just the IO () for our package manager (We may just use plain old IO () instead. However we do not do actions in IO directly, any operations would be implemented DSLs (deep embedding), which makes it convenient to do multiple kinds of interpretation, and allows a comprehensive way of viewing what happens at building.
 
-The reason for this kind of separation is that we can perform any analysis or inspection before actually perform it.Although the theories behind free monads are frightening,its usage is quite simple,and as users you will only see a simple monadic interface .
+The reason for this kind of separation is that we can perform any analysis or inspection before actually performing it. Although the theories behind free monads are frightening, its usage is quite simple, and as users you will only see a simple monadic interface.
 
-DSLs:https://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/embedding-short.pdf
+DSLs: https://www.cs.ox.ac.uk/people/jeremy.gibbons/publications/embedding-short.pdf
 
 http://www.cs.ox.ac.uk/jeremy.gibbons/publications/embedding.pdf
 
