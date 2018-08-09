@@ -1,4 +1,4 @@
-module Package.IpkgAst
+module Package.IpkgAstAndParser
 
 import public Lightyear
 import public Lightyear.Char

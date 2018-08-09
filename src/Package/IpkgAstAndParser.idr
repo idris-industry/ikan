@@ -1,10 +1,15 @@
-module Package.IpkgParser
-import public Text.Lexer
+module Package.IpkgAst
 
--- not used
+import public Lightyear
+import public Lightyear.Char
+import public Lightyear.Strings
+
 %default total
+%access public export
 
-public export
+ipkgPackage : String->String
+ipkgPackage x = "package " ++x
+
 {-      <|> clause "main" (iName []) (\st v -> st { idris_main = Just v })
       <|> clause "sourcedir" identifier (\st v -> st { sourcedir = v })
       <|> clause "opts" pOptions (\st v -> st { idris_opts = v ++ idris_opts st })
@@ -23,28 +28,50 @@ public export
       <|> clause "brief" stringLiteral (\st v -> st { pkgbrief = Just v })
       <|> clause "author" textUntilEol (\st v -> st { pkgauthor = Just v })
       <|> clause "maintainer" textUntilEol (\st v -> st { pkgmaintainer = Just v })-}
-      
-data Token = Iexecutable String
-           | Imain String
+data Clause =  Imain String
            | Isourcedir String
-           | Iopts String
            | Ipkgs (List String)
-           | Symbol String
-           | Keyword String
-           | Unrecognised String
-           | Comment String
-           | EndInput
-           
-comment : Lexer
-comment = exact "--" <+> many (isNot '\n')
-           
-rawTokens : TokenMap Token
-rawTokens = [(comment, Comment)]
+           | Ilibs (List String)
+           | Iopts String
+           | Ideps (List String)
+--           | Ipkgs (List String)
 
-doParse : String-> Either String $ List (TokenData Token)                                
-doParse str =case lex rawTokens str of
-  (a, (_,_,""))=> Right a
-  (_,(_,_,e)) => Left $ "error!   " ++ e
+IpkgAst : Type
+IpkgAst = List Clause
+
+Clause2cmdStr : Clause -> String
+Clause2cmdStr x = "main"
+
+partial
+pNames : Parser String
+pNames = (many $ noneOf "," )>>= pure . pack
+
+
+pClause : String->(String -> Clause) -> Parser Clause
+pClause x f = do
+  string x
+  pure $ f x
+
+partial
+pListClause : String->(List String-> Clause) -> Parser Clause
+pListClause x f =  do
+  string x
+  spaces
+  string "="
+  l<-pNames `sepBy` (string ",")
+  pure $ f l
+
+partial
+clauseChoice : Parser Clause
+clauseChoice = pClause "main" Imain <|> 
+               pClause "sourcedir" Isourcedir <|> 
+               pClause "opts" Iopts <|>
+               pListClause "libs" Ipkgs <|>
+               pListClause "pkgs" Ipkgs
+
+partial
+parseIpkg : Parser (List Clause)
+parseIpkg =  clauseChoice `sepBy` newline
 
 {-
 module Idris.Package.Parser where

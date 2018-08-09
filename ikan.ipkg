@@ -2,13 +2,14 @@ package ikan
 
 modules = Main,
 	Package.IkanAst,
-	Package.IpkgAst,
-	Package.IkanAssets,
-	Package.IpkgParser
+	Package.IpkgAstAndParser,
+	Package.IkanAssets
 
 sourcedir = src
 executable = ikan
-pkgs = lightyear,contrib
--- opts = "-p contrib"
+
+pkgs = lightyear,contrib,idris-free
+
+-- opts = "-p idris-free -p derive -p contrib -p lightyear"
 
 main = Main
