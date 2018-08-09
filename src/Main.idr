@@ -22,48 +22,57 @@ ikanInit = do
          (Left l)=>  echo "error ikanInit"
          (Right x)=>  pure ()
 
-
-
 cmds : List (String,String,IO ())
-cmds = [("np","create new template project ",do
-  echo "project name ?"
-  fn<-getLine
-  r<-createDir fn
-  case r of 
-         (Left l)=>  echo "error !"
-         (Right x)=>  do 
-           writeFile (fn++"/"++ fn++".ipkg") (ipkgPackage fn) 
-           writeFile (fn++"/.gitignore") (IkanAssets.flGitignore)
-           echo $ "ok,project created : "++ fn
-           echo "create main.idr? n for not "
-           x<-getLine
-           if (x=="n") then pure () else do writeFile (fn++"/Main.idr") IkanAssets.flMain;pure ()
-           ) ,
-         ("iinit","initialize ikan package manager(write files to "++ikanSettingsDir++")",do
+cmds = [("np", "create new template project ",
+       (do
+         echo "project name ?"
+         fn<-getLine
+         r<-createDir fn
+         case r of 
+           (Left l)=>  echo "error !"
+           (Right x)=>  do 
+             writeFile (fn++"/"++ fn++".ipkg") (ipkgPackage fn) 
+             writeFile (fn++"/.gitignore") (IkanAssets.flGitignore)
+             echo $ "ok,project created : "++ fn
+             echo "create main.idr? n for not "
+             x<-getLine
+             if (x=="n") 
+             then pure () 
+             else do 
+               writeFile (fn++"/Main.idr") IkanAssets.flMain
+               pure ())
+           ),
+         ("iinit","initialize ikan package manager(write files to "++ikanSettingsDir++")",
+         (do
            r<-dirOpen ikanSettingsDir
            case r of 
                 (Left l)=> ikanInit
-                (Right r)=> echo "dir ok!"
+                (Right r)=> echo "dir ok!")
          ),
-         ("clr","clean this project,delete all .ibc file",do
-         rawcmd "rm **/*.ibc"
-         echo "ok,project cleaned"
+         ("clr","clean this project,delete all .ibc file",
+           (do
+             rawcmd "rm **/*.ibc"
+             echo "ok,project cleaned")
          --rawcmd "idris clean ipkg"
          ),
          ("nf","new file/module",
-         do
+          (do
            echo0 "new file/module name:"
            s<-getLine
-           writeFile (s++".idr") $ concat ["module ",s," \n"]
-           pure ()
+           writeFile (s++".idr") $  "module "++s++" \n"
+           pure ())
            )
          ]
 
+
+
 showHelp : IO ()
 showHelp = do
-  let lns=map (\(c,desc,_) => concat [" ",c," : ",desc," \n"]) cmds
+  let lns=map (\(c,desc,_) => " "++c++" : "++desc++" \n") cmds
+--Prelude.Foldable.concat [" ",c," : ",desc," \n"]
   echo $ "showing help : "
   putStrLn $ "avail commands : \n" ++ (foldl1 (\x,y=>x++y) lns)
+  pure ()
 
 listDirs : String->IO ()
 listDirs s = do
@@ -96,7 +105,7 @@ main = do
   pure ()
 where
     doAct : String->IO ()
-    doAct = (\x => let act = find (\cmd=> let (nm,_,_)=cmd in nm==x) cmds 
+    doAct = (\x => let act = find (\cmd=> let (nm,_,_) = cmd in nm==x) cmds 
                     in (case act of
                             Nothing=> do echo "cmd not found"
                                          showHelp
