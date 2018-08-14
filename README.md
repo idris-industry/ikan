@@ -4,7 +4,7 @@
 
 packages will be hosted here: https://github.com/orgs/idris-packages/ , please email me if you would like to help manage the packages. Basically, the packages this org forked would be available to ikan.
 
-The user api is mainly monadic, using free monads, which easily allows multiple kinds of analysis and interpretation.
+The user api is mainly monadic, using free monads, which easily allows multiple kinds of analysis and interpretation.The philosophy is emacs like,that ikan just acts like a library.
 
 General discuss about idris package manager is here
 
@@ -93,6 +93,8 @@ https://github.com/idris-industry/idris-free (not merged yet)
 # Ideas to draw from
 
 scala 's `mill` and  `sbt` : https://github.com/lihaoyi/mill
+
+haskell's `shake` build
 
 clojure : https://leiningen.org/
 
