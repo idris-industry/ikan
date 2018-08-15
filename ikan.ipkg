@@ -8,8 +8,8 @@ modules = Main,
 sourcedir = src
 executable = ikan
 
-pkgs = lightyear,contrib,idris-free
+--pkgs = lightyear,contrib,idris-free
 
--- opts = "-p idris-free -p derive -p contrib -p lightyear"
+opts = "-p idris-free -p derive -p contrib -p lightyear"
 
 main = Main

@@ -7,9 +7,26 @@ import public Lightyear.Strings
 %default total
 %access public export
 
-ipkgPackage : String->String
-ipkgPackage x = "package " ++x
 
+testipkg1 : String
+testipkg1 = """
+package ikan
+
+modules = Main,
+	Package.IkanAst,
+	Package.IpkgAstAndParser,
+	Package.IkanAssets
+
+sourcedir = src
+executable = ikan
+
+--pkgs = lightyear,contrib,idris-free
+
+opts = "-p idris-free -p derive -p contrib -p lightyear"
+
+main = Main
+
+"""
 {-      <|> clause "main" (iName []) (\st v -> st { idris_main = Just v })
       <|> clause "sourcedir" identifier (\st v -> st { sourcedir = v })
       <|> clause "opts" pOptions (\st v -> st { idris_opts = v ++ idris_opts st })
@@ -28,12 +45,17 @@ ipkgPackage x = "package " ++x
       <|> clause "brief" stringLiteral (\st v -> st { pkgbrief = Just v })
       <|> clause "author" textUntilEol (\st v -> st { pkgauthor = Just v })
       <|> clause "maintainer" textUntilEol (\st v -> st { pkgmaintainer = Just v })-}
+
+ipkgPackage : String->String
+ipkgPackage x = "package " ++x
+
 data Clause =  Imain String
            | Isourcedir String
            | Ipkgs (List String)
            | Ilibs (List String)
            | Iopts String
            | Ideps (List String)
+           | Icomment String
 --           | Ipkgs (List String)
 
 IpkgAst : Type
@@ -67,12 +89,16 @@ clauseChoice = pClause "main" Imain <|>
                pClause "sourcedir" Isourcedir <|> 
                pClause "opts" Iopts <|>
                pListClause "libs" Ipkgs <|>
-               pListClause "pkgs" Ipkgs
+               pListClause "pkgs" Ipkgs <|>
+               pClause "--" Icomment
 
 partial
-parseIpkg : Parser (List Clause)
+parseIpkg : Parser IpkgAst
 parseIpkg =  clauseChoice `sepBy` newline
 
+partial
+str2Ipkg : String -> Either String IpkgAst
+str2Ipkg x = Lightyear.Strings.parse parseIpkg x
 {-
 module Idris.Package.Parser where
 
