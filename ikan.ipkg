@@ -8,7 +8,7 @@ modules = Main,
 sourcedir = src
 executable = ikan
 
---pkgs = lightyear,contrib,idris-free
+--pkgs = lightyear,contrib,idris-free  -- this freezes idris..
 
 opts = "-p idris-free -p derive -p contrib -p lightyear"
 
