@@ -2,6 +2,8 @@
 
 # ikan : package manager for idris,in idris
 
+a example build file is at src/build.idr
+
 packages will be hosted here: https://github.com/orgs/idris-packages/ , please email me if you would like to help manage the packages. Basically, the packages this org forked would be available to ikan.
 
 The user api is mainly monadic, using free monads, which easily allows multiple kinds of analysis and interpretation.The philosophy is emacs like,that ikan just acts like a library.
