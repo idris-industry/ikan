@@ -100,6 +100,8 @@ haskell's `shake` build
 
 clojure : https://leiningen.org/
 
+Build Systems à la Carte(Haskell shake build) :  http://delivery.acm.org/10.1145/3240000/3236774/icfp18main-p46-p.pdf?ip=13.231.121.81&id=3236774&acc=OA&key=4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E6D218144511F3437&__acm__=1537263121_fe5174184ffd2d85fd5c3b83994abc50
+
 # Existing idris pm
 
 https://github.com/dcao/elba
