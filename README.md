@@ -106,8 +106,8 @@ Build Systems à la Carte(Haskell shake build) :  http://delivery.acm.org/10.114
 
 # Existing idris pm
 
-https://github.com/dcao/elba
-
-https://github.com/idream-build/idream
+- **[Elba](https://github.com/elba/elba)** - A package manager for Idris
+- **[idream](https://github.com/idream-build/idream)** - A simple build system for Idris
+- **[Idris Rules](http://idris.build)** - Idris rules for Bazel
 
 # Contribution welcomed!
