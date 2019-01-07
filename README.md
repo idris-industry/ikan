@@ -2,6 +2,8 @@
 
 # ikan : package manager for idris,in idris
 
+The next generation package manager and build tool for idris,with free monads as DSL,using idris repl for scala's `sbt` like interaction, ,and possible other languages!
+
 a example build file is at src/build.idr
 
 execution of build file : src/Package/IkanExecute.idr
@@ -94,9 +96,9 @@ install idris-free package with freer
 
 https://github.com/idris-industry/idris-free (not merged yet)
 
-# Ideas to draw from
+# Where comes this idea?
 
-scala 's `mill` and  `sbt` : https://github.com/lihaoyi/mill
+greatly influenced by scala 's `mill`(https://github.com/lihaoyi/mill) and  `sbt` ,which build files are first class.
 
 haskell's `shake` build
 
