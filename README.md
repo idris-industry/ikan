@@ -1,5 +1,9 @@
 [![Join the chat at https://gitter.im/idris-gitter/Lobby](https://badges.gitter.im/idris-gitter/Lobby.svg)](https://gitter.im/idris-gitter/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+
+🚧 **Ongoing project** 🚧 **Status: Prototype** 🚧
+
+
 # ikan : package manager for idris,in idris
 
 The next generation package manager and build tool for idris,with free monads as DSL,using idris repl for scala's `sbt` like interaction, ,and possible other languages!
